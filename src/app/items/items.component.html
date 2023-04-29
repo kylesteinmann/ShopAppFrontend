@@ -1,18 +1,30 @@
-<form #itemForm="ngForm" (ngSubmit)="itemsService.onSubmitItem">
+<div><div class="cartContainer" *ngFor="let cartItem of itemsService.cart">
+  <div class="itemContainer">
+    <h3 class="itemSpace"> {{cartItem.name}} </h3>
+    <p class="itemSpace"> {{cartItem.description}} </p>
+    <p class="itemSpace"> {{cartItem.stock}}  </p>
+    <p class="itemSpace"> {{cartItem.price}} </p>
+    <!-- <button (click)="itemsService.removeFromCart(cartItem)">Remove from Cart</button> -->
+  </div>
+</div>
+<button (click)="itemsService.onCheckout()">Checkout</button>
+</div>
+
+<form #itemForm="ngForm" (ngSubmit)="itemsService.onSubmitItem(itemForm); itemForm.resetForm()" >
   <div>
-    <label for="name">Item Name</label>
+    <label for="name">Item Name: </label>
     <input type="text" id="name" name="name" [(ngModel)]="itemsService.name" #name="ngModel" required>
   </div>
   <div>
-    <label for="description">Item Description</label>
+    <label for="description">Item Description: </label>
     <input type="text" id="description" name="description" [(ngModel)]="itemsService.description" #description="ngModel" required>
   </div>
   <div>
-    <label for="stock">Item in Stock</label>
+    <label for="stock">Item in Stock: </label>
     <input type="text" id="stock" name="stock" [(ngModel)]="itemsService.stock" #stock="ngModel" required>
   </div>
    <div>
-    <label for="price">Item Price</label>
+    <label for="price">Item Price: </label>
     <input type="text" id="price" name="price" [(ngModel)]="itemsService.price" #price="ngModel" required>
   </div>
   <div>
@@ -21,6 +33,16 @@
 </form>
 
 
+<div *ngFor="let item of itemsService.items">
+  <div class="itemContainer">
+    <h3 class="itemSpace"> {{item.name}} </h3>
+    <p class="itemSpace"> {{item.description}} </p>
+    <p class="itemSpace"> {{item.stock}}  </p>
+    <p class="itemSpace"> {{item.price}} </p>
+   <button (click)="itemsService.addToCart(item)">Add to Cart</button>
+ <!-- <button (click)="itemsService.onEditItem(item.id)">Edit</button> -->
+  </div>
+</div>
 
 
 

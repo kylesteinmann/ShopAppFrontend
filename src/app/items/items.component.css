@@ -1,0 +1,9 @@
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.itemSpace {
+  margin:5px 3px 5px 3px
+}
